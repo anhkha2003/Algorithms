@@ -37,6 +37,7 @@ struct BIT {
 };
 
 int main() {
+    freopen("input.txt", "r", stdin);
     ios::sync_with_stdio(0);
     cin.tie(NULL);
     
