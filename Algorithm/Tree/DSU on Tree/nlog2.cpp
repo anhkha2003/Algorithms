@@ -21,7 +21,6 @@ void dfs(int n, int par) {
         dfs(i, n);
 
         sub[n] += sub[i];
-
         if (maxSub < sub[i]) {
             maxSub = sub[i];
             bigChild = i;

@@ -35,11 +35,11 @@ struct Trie {
             int bit = (bool) (val & (1 << i));
 
             if (node[root].child[bit] == 0) {
-                root = node[root].child[bit];
-            }
-            else {
                 res += (1 << i);
                 root = node[root].child[bit ^ 1];
+            }
+            else { 
+                root = node[root].child[bit];
             }
         }
         return res;

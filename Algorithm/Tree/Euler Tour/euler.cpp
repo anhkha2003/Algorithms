@@ -6,16 +6,16 @@ int euler[400005];
 int first[200005];
 int last[200005];
 
-int cnt;
+int idx = 0;
 void dfs(int n, int p) {
-    euler[++cnt] = n;
-    first[n] = cnt;
+    euler[++idx] = n;
+    first[n] = idx;
     for (auto i: adj[n]) {
         if (i == p) continue;
         dfs(i, n);
     }
-    euler[++cnt] = n;
-    last[n] = cnt;
+    euler[++idx] = n;
+    last[n] = idx;
 }
 
 int main() {

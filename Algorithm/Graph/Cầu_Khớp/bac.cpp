@@ -9,11 +9,11 @@ struct BridgeArcPoint {
         num.resize(n + 1);
         low.resize(n + 1);
         for (int i = 1; i <= n; i++) {
-            if (!num[i]) dfs(i, 0);
+            if (!num[i]) dfs(i, 0, i);
         }
     }
 
-    void dfs(int u, int par) {
+    void dfs(int u, int par, int root) {
         int numChild = 0;
         low[u] = num[u] = ++time;
 
@@ -24,7 +24,7 @@ struct BridgeArcPoint {
                 low[u] = min(low[u], num[i]);
             }
             else {
-                dfs(i, u);
+                dfs(i, u, root);
                 numChild++;
                 low[u] = min(low[u], low[i]);
                 
@@ -32,7 +32,7 @@ struct BridgeArcPoint {
                     bridges.push_back({u, i}); // Bridge
                 }
 
-                if (u == 1) {
+                if (u == root) {
                     if (numChild >= 2) isCritical = true;
                 }
                 else {

@@ -1,3 +1,6 @@
+// use pair to find indices
+// find Max, Min, Gcd
+
 struct RMQ {
     vector<int> a;
     vector<vector<int>> sparseMax, sparseMin;
@@ -9,7 +12,7 @@ struct RMQ {
         sparseMin.resize(n);
         for (int i = 0; i < n; i++) {
             sparseMax[i].resize(__lg(n) + 1);
-            sparseMax[i][0] = a[i];
+            sparseMax[i][0] = a[i]; // {a[i], i}
 
             sparseMin[i].resize(__lg(n) + 1);
             sparseMin[i][0] = a[i];
@@ -32,6 +35,4 @@ struct RMQ {
         int k = __lg(r - l + 1);
         return min(sparseMin[l][k], sparseMin[r - (1 << k) + 1][k]);
     }
-
-    // find Max, Min, Gcd
 };

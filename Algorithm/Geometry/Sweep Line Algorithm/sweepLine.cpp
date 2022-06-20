@@ -15,11 +15,10 @@ struct Event {
     bool isOpen; // 1: mo, 0: dong
 
     bool operator < (Event other) {
-        // return true neu this < other
-        // return false neu this >= other
+        // return true if this < other
+        // return false if this >= other
         if (time == other.time) {
-            if (isOpen == true) return false;
-            else return true;
+           return isOpen < other.isOpen;
         }
         return time < other.time;
     }
@@ -28,8 +27,7 @@ struct Event {
 // return true if a < b
 bool cmp(Event a, Event b) {
     if (a.time == b.time) {
-        if (isOpen == other.isOpen) return false;
-        else return !isOpen;
+       return a.isOpen < b.isOpen;
     }
     return a.time < b.time;
 }
