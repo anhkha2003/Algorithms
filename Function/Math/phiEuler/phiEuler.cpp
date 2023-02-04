@@ -10,7 +10,9 @@ using namespace std;
 
 // ĐPT: O(sqrt(n))
 int phiEuler(int n) { // = n * (1 - 1/p1) ... (1 - 1/pn)
-	int m = sqrt(n);
+	if (n == 1) return 1;
+
+    int m = sqrt(n);
 
 	int res = n;
 	for (int i = 2; i <= m; i++) {

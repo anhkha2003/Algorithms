@@ -48,8 +48,8 @@ vector<Point> convexHull(vector<Point> pts) {
     vector<Point> up, dn;
     for (int i = 0; i < n; i++) {
         // Note: If need maximum points on convex hull, need to change >= 0 and <= 0 to > 0 and < 0.
-        while (up.size() > 1 && area2(up[up.size()-2], up.back(), pts[i]) >= 0) up.pop_back();
-        while (dn.size() > 1 && area2(dn[dn.size()-2], dn.back(), pts[i]) <= 0) dn.pop_back();
+        while (up.size() > 1 && area(up[up.size()-2], up.back(), pts[i]) >= 0) up.pop_back();
+        while (dn.size() > 1 && area(dn[dn.size()-2], dn.back(), pts[i]) <= 0) dn.pop_back();
         up.push_back(pts[i]);
         dn.push_back(pts[i]);
     }

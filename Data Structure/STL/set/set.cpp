@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Note: store value of iterator into variable before erasing
+
 struct CMP {
     bool operator() (int a, int b) {
         return a > b;

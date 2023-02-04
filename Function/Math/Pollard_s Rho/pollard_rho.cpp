@@ -12,12 +12,15 @@ long long Rand(long long l, long long r){
 }
 
 long long mul(long long a, long long b, long long m){
-    if (b == 1) return a % m;
-    if (b == 0) return 1 % m;
-    a %= m; b %= m;
-    long long q = mul(a, b / 2, m);
-    if (b % 2 == 0) return ((q + q) % m + m) % m;
-    else return ((q + q + a) % m + m) % m;
+    // return a * b % m if m <= 1e9
+    // return (__int128) a * b % m if can use __int128
+
+    long long c = (long double)a * b / m;
+    long long ans = (long long)(a * b - c * m) % m;
+    if (ans < 0) {
+        ans += m;
+    }   
+    return ans;
 }
 
 long long pw(long long a, long long n, long long m){

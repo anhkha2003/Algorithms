@@ -31,7 +31,7 @@ struct HashString {
             inv[i] = inv[i - 1] * invBase % MOD;
         }
         
-        // calc prefixSum
+        // calc prefixSum = sum s[i] * 10^i
         long long curPow = 1; // BASE ^ i
         for (int i = 1; i <= n; i++) {
             prefixSum[i] = (prefixSum[i - 1] + curPow * str[i - 1] % MOD) % MOD;
