@@ -51,35 +51,3 @@ struct SegmentTree {
         return res;
     }
 };
-
-int main() {
-    freopen("input.txt", "r", stdin);
-    ios::sync_with_stdio(0);
-    cin.tie(NULL);
-    
-    int n, q;
-    cin >> n >> q;
-
-    vector<int> a(n + 1);
-    for (int i = 1; i <= n; i++) {
-        cin >> a[i];
-    }
-
-    SegmentTree seg(n);
-
-    seg.build(a, 1, 1, n);
-
-    for (int i = 1; i <= q; i++) {
-        int type, x, v;
-        cin >> type >> x >> v;
-
-        if (type == 1) {
-            seg.update(1, 1, n, x, v);
-        }
-        else {
-            cout << seg.query(1, 1, n, x, v).max << "\n";
-        }
-    }
-
-    return 0;
-}

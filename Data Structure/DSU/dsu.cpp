@@ -21,10 +21,10 @@ struct DSU {
         if (x == y) return 0;
 
         if (root[x] > root[y]) {
-            swap(x, y); // số âm
+            swap(x, y); 
         }
+        
         // smaller attach to bigger
-
         root[x] += root[y];
         root[y] = x;
 

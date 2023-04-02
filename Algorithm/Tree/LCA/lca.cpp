@@ -30,10 +30,26 @@ struct LCA {
             }
         }    
     }
+
+    void setup() {
+        dfs(1, 0);
+        initJumps();
+    }
+
+    int getKthAnc(int n, int k) { // jump k nodes from n
+        int node = n;
+        for (int i = 30; i >= 0; i--) {
+            if (p[node][i] != -1 && (1 << i) <= k) {
+                node = p[node][i];
+                k -= (1 << i);
+            }
+        }
+        return node;
+    } 
  
     int lca(int u, int v){
         if (h[u] < h[v]) swap(u, v);
-        if (h[v] < h[u]) { // nhảy từ u tới v
+        if (h[v] < h[u]) { // jump u to v
             for (int i = logn; i >= 0; i--) {
                 if (h[p[u][i]] >= h[v]) u = p[u][i];
             }
@@ -59,29 +75,3 @@ struct LCA {
     } 
 };
  
-int main() {
-    freopen("input.txt", "r", stdin);
-    ios::sync_with_stdio(0);
-    cin.tie(NULL);
-    
-    int n, q;
-    cin >> n >> q;
- 
-    LCA lca(n);
-    for (int i = 2; i <= n; i++) {
-        int u;
-        cin >> u;
-        lca.addEdge(u, i);
-    }
- 
-    lca.dfs(1, 0);
-    lca.initJumps();
- 
-    for (int i = 1; i <= q; i++) {
-        int u, v;
-        cin >> u >> v;
-        cout << lca.lca(u, v) << "\n";
-    }
- 
-    return 0;
-}

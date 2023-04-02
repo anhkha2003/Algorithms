@@ -5,9 +5,9 @@ double f(double x) {
 }
 
 // find max
-void ternarySearch() {
+double ternarySearch() {
     long double lower = -2e9, upper = 2e9;
-    for (int i = 1; i <= 50; i++) {
+    for (int i = 1; i <= 200; i++) {
         // faster, turn only 50
         long double diff = (upper - lower) / (1e3);
         long double mid = (lower + upper) / 2;

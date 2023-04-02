@@ -10,6 +10,9 @@ struct RMQ {
         n = arr.size();
         sparseMax.resize(n);
         sparseMin.resize(n);
+
+        if (n == 0) return;
+        
         for (int i = 0; i < n; i++) {
             sparseMax[i].resize(__lg(n) + 1);
             sparseMax[i][0] = {a[i], i};
