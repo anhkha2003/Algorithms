@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 struct SegmentTree {
     struct Node {
         int max = 0;    

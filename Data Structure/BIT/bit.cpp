@@ -1,6 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-
+// vector<BIT> bit(26, BIT(n));
 struct BIT {
     vector<int> fen;
     int n;
@@ -36,16 +34,3 @@ struct BIT {
     }
 };
 
-int main() {
-    freopen("input.txt", "r", stdin);
-    ios::sync_with_stdio(0);
-    cin.tie(NULL);
-    
-    BIT dp(1e6 + 5);
-    for : int val = dp.getMax(a[i]) + a[i];
-    for : dp.update(a[i], val);
-
-    vector<BIT> bit(26, BIT(n));
-
-    return 0;
-}

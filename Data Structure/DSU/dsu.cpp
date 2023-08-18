@@ -3,11 +3,11 @@ struct DSU {
     int n;
     DSU(int n): n(n) {
         // root[x] > 0: parent of x
-        // root[x] < 0: size of part include x
+        // root[x] < 0: size of component include x
         root.assign(n + 1, -1);
     }
 
-    // root[findRoot] < 0: size của TPLT
+    // root[findRoot] < 0: size of component
     int findRoot(int u) {
         while (root[u] >= 0) {
             u = root[u];
