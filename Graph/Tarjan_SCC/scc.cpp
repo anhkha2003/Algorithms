@@ -36,8 +36,8 @@ struct SCC {
             vector<int> curSCC;
             while (stack.size()) {
                 int b = stack.back();
-                curSCC.push_back(b);
                 stack.pop_back();
+                curSCC.push_back(b);
                 vs[b] = 1;
                 if (b == a) break;
             }

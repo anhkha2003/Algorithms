@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int p[500005][35]; // p[a][i]: đỉnh đi tới sau 2^i bước, xuất phát từ a
+int p[500005][35]; // p[a][i]: node come after 2^i steps, start from a
 
 //p[i][0] = parent of i
 //p[i][j] = p[p[i][j - 1]][j - 1];
 
-// for i trước for a
+// for i before for a
 void initJumps() {
     for (int j = 1; j <= logn; j++) {
         for (int i = 1; i <= n; i++) {
