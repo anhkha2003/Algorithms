@@ -1,3 +1,7 @@
+// block-cut tree
+// block: biconnected component (containing critical nodes)
+// cutpoints: critical nodes (consider as nodes in tree)
+// tree contains both block and cutpoints
 struct BiconnectedComponent {
     int time = 0, n, numBCC = 0;
     vector<int> num, low, bccIdx, critical, temp;

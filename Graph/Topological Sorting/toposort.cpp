@@ -1,5 +1,4 @@
 // if u can go to v, index of u < index of v
-
 // can use to find the longest path btw any pair of vertices
 
 struct TopoSort {

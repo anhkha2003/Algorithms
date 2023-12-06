@@ -5,7 +5,7 @@
 // 
 // add edges: dinic.addEdge(u, v, c)
 //
-// s -> u -> v -> t (add đỉnh ảo s, t)
+// s -> u -> v -> t (add virtual node s, t)
 // c = 1
 //
 // trace: for (auto e: dinic.E) {

@@ -1,11 +1,11 @@
-#include <bits/stdc++.h>
-using namespace std;
+// Gauss Elimination
+// if having mod prime, replace / by inverse modulo, double by long long
 
 const double EPS = 1e-9;
 const int INF = 2; // it doesn't actually have to be infinity or a big number
 
-// n phương trình, m biến
-// 0: vô nghiệm, 1: 1 nghiệm, INF: vô số nghiệm
+// n equations, m variables
+// 0: no solution, 1: 1 solution, INF: finite solutions
 int gauss (vector<vector<double>> a, vector<double> &ans) {
     int n = (int) a.size();
     int m = (int) a[0].size() - 1;
@@ -50,33 +50,13 @@ int gauss (vector<vector<double>> a, vector<double> &ans) {
     return 1;
 }
 
-int main() {
-    freopen("input.txt", "r", stdin);
-    ios::sync_with_stdio(0);
-    cin.tie(NULL);
+vector<vector<double>> a;
+vector<double> ans;
 
-    vector<vector<double>> a;
-    vector<double> ans;
+// 3x + 2y + 4z = 11
+vector<double> equation;
+equation.push_back(3); equation.push_back(2);
+equation.push_back(4); equation.push_back(11);
+a.push_back(equation);
 
-    vector<double> equation;
-    equation.push_back(3); equation.push_back(2);
-    equation.push_back(4); equation.push_back(11);
-
-    // 3x + 2y + 4z = 11
-    a.push_back(equation);
-
-    equation.clear();
-    equation.push_back(6); equation.push_back(-3);
-    equation.push_back(7); equation.push_back(7);
-
-    // 6x - 3y + 7z = 7
-    a.push_back(equation);
-
-    gauss(a, ans);
-
-    for (auto i: ans) {
-        cout << i << ' ';
-    }
-
-    return 0;
-}
+gauss(a, ans);

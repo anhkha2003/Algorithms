@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// tìm max/min đoạn tịnh tiến
-vector<int> calcMin(vector<int> &a, int k) { // [i-k+1, i]
+// find max/min in [i-k+1, i]
+vector<int> calcMin(vector<int> &a, int k) { 
     vector<int> res;
     int n = a.size() - 1;
     deque<int> q;
@@ -27,7 +27,7 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(NULL);
     
-    // deque = vector + queue
+    // deque = stack + queue
     deque<int> q;
 
     q.push_front(14);

@@ -1,3 +1,4 @@
+// Convex Hull Trick
 // dp[i] = min(dp[j] + b[j] * a[i] + C)
 
 // line: y = x * a + b

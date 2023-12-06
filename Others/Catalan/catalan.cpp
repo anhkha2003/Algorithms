@@ -1,20 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const long long MOD = 1e9 + 1329;
+const long long MOD = 1e9 + 7;
 
-long long fact[100005];
-long long inv[100005];
+long long fact[200005];
+long long inv[200005];
 
 long long pw(long long n, long long x) {
     if (x == 0) return 1;
     long long q = pw(n, x / 2);
-    if (x % 2 == 0) {
-        return q * q % MOD;
-    }
-    else {
-        return q * q % MOD * n % MOD;
-    }
+    if (x % 2 == 0) return q * q % MOD;
+    return q * q % MOD * n % MOD;
 }
 
 long long catalan(long long n) {
@@ -27,10 +23,9 @@ int main() {
     cin.tie(NULL);
     
     fact[0] = inv[0] = 1;
-    for (long long i = 1; i <= 100000; i++) {
+    for (long long i = 1; i <= 200000; i++) {
         fact[i] = fact[i - 1] * i % MOD;
-        inv[i] = pw(fact[i], MOD - 2)
+        inv[i] = pw(fact[i], MOD - 2);
     }
-
     return 0;
 }

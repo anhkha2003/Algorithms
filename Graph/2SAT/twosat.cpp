@@ -1,5 +1,6 @@
 // solve(): return 1 if assignable
 // -i = ~i
+// getColor(i): return a[i] = 1/2
  
 struct TwoSat {
     int n;

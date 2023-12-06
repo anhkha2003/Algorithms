@@ -1,6 +1,6 @@
 struct SegmentTree {
     struct Node {
-        int max = 0;    
+        int max = 0;
     }; 
 
     vector<Node> st;
@@ -15,7 +15,7 @@ struct SegmentTree {
 
     void build(vector<int>& a, int id, int l, int r) {
         if (l == r) {
-            st[id].max = a[l];
+            st[id].max = a[l];            
             return;
         }
         int mid = (l + r) / 2;
@@ -48,3 +48,4 @@ struct SegmentTree {
         return res;
     }
 };
+
