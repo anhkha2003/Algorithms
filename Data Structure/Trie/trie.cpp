@@ -26,6 +26,7 @@ struct Trie {
             }
             root = node[root].child[bit];
         }
+        node[root].size++;
     }
 
     long long queryMin(int val) {

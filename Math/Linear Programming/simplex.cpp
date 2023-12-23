@@ -26,7 +26,7 @@ struct LPSolver {
             for (int j = 0; j < n; ++j) {
                 D[i][j] = A[i][j];
             }
-            B[i] = n+i;
+            B[i] = n + i;
             D[i][n] = -1;
             D[i][n + 1] = b[i];
         }
@@ -41,18 +41,21 @@ struct LPSolver {
     void pivot(int r, int s) {
         double inv = 1.0 / D[r][s];
         for (int i = 0; i < m + 2; ++i) {
-            if (i != r) {
+            if (i != r && abs(D[i][s]) > EPS) {
+                double inv2 = D[i][s] * inv;
                 for (int j = 0; j < n + 2; ++j) {
-                    if (j != s) {
-                        D[i][j] -= D[r][j] * D[i][s] * inv;
-                    }
+                    D[i][j] -= D[r][j] * inv2;
                 }
-                D[i][s] = -D[i][s] * inv;   
+                D[i][s] = D[r][s] * inv2;   
             }
         }
 
         for (int j = 0; j < n + 2; ++j) {
             if (j != s) D[r][j] *= inv;
+        }
+
+        for (int i = 0; i < m + 2; ++i) {
+            if (i != r) D[i][s] *= -inv;
         }
 
         D[r][s] = inv;
@@ -64,22 +67,17 @@ struct LPSolver {
         while(true) {
             int s = -1;
             for (int j = 0; j <= n; ++j) {
-                if (N[j] != -phase && (s == -1 || D[x][j] < D[x][s])) s = j;
+                if (N[j] != -phase) {
+                    if (s == -1 || make_pair(D[x][j], N[j]) < make_pair(D[x][s], N[s])) s = j;
+                }
             }
             if (D[x][s] >= -EPS) return true;
 
             int r = -1;
             for (int i = 0; i < m; ++i) {
-                if (D[i][s] > EPS) {
-                    if (r == -1) {
-                        r = i;
-                        continue;
-                    }
-
-                    pair<double, double> pi(D[i][n + 1] / D[i][s], B[i]);
-                    pair<double, double> pr(D[r][n + 1] / D[r][s], B[r]);
-                    if (pi < pr) r = i;
-                }
+                if (D[i][s] <= EPS) continue;
+                if (r == -1 || make_pair(D[i][n+1] / D[i][s], B[i])
+                             < make_pair(D[r][n+1] / D[r][s], B[r])) r = i;
             }
             if (r == -1) return false;
             pivot(r, s);
@@ -96,8 +94,12 @@ struct LPSolver {
             pivot(r, n);
             if (!simplex(2) || D[m + 1][n + 1] < -EPS) return -INF;
             for (int i = 0; i < m; ++i) {
-                if(B[i] == -1) {
-                    pivot(i, find_if(N.begin(), N.end(), [&](int j){ return D[i][j] > EPS; }) - N.begin());
+                if (B[i] == -1) {
+                    int s = 0;
+                    for (int j = 1; j <= n; j++) {
+                        if (make_pair(D[i][j], N[j]) < make_pair(D[i][s], N[s])) s = j;
+                    }
+                    pivot(i, s);
                 }
             }
         }

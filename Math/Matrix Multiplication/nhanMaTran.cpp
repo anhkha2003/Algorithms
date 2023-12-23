@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 const long long MOD = 1e9 + 7;
@@ -63,16 +62,4 @@ long long solve(long long x, long long n) {
 	}
 	
 	return res.coef[1][1];
-}
-
-int main() {
-	ios::sync_with_stdio(0);
-	cin.tie(NULL);
-
-	long long x, n;
-    cin >> x >> n >> mod;
-
-    cout << solve(x, n);
-
-	return 0;
 }
