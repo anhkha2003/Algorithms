@@ -1,12 +1,13 @@
 // complexity: E * sqrt(V)
-
 // Use:
 // Constructor: Dinic dinic(n)
 // 
 // add edges: dinic.addEdge(u, v, c)
 //
-// s -> u -> v -> t (add virtual node s, t)
-// c = 1
+// s -> i -> j -> t
+// dinic.addEdge(i, j, c)
+// dinic.addEdge(s, i, 1)
+// dinic.addEdge(i, t, 1)
 //
 // trace: for (auto e: dinic.E) {
 //  if (e.flow && e.cap) {

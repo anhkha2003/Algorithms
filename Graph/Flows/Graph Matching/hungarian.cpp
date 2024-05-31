@@ -1,6 +1,5 @@
 // flow-matching mincost
 // complexity: O(n^3)
-
 // Use:
 // Constructor: Hungarian<long long> hung(n, m)
 // 
@@ -20,7 +19,7 @@ class Hungarian {
     vector< vector<T> > a;
     vector<T> u;
     vector<T> v;
-    vector<int> pa; // i -> pa[i]
+    vector<int> pa; // i -> pa[i] (trace)
     vector<int> pb; // i <- pb[i]
     vector<int> way;
     vector<T> minv;

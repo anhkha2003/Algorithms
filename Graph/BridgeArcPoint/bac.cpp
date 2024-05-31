@@ -1,19 +1,19 @@
 struct BridgeArcPoint {
     int time = 0, n;
-    vector<int> num, low, criticalNodes, stack, ccIdx;
+    vector<int> num, low, criticalNodes, stack, bccIdx;
     vector<vector<int>> adj, components;
     vector<pair<int, int>> bridges;
 
     BridgeArcPoint(int n, vector<vector<int>> adj): n(n), adj(adj) {
         num.resize(n + 1);
         low.resize(n + 1);
-        ccIdx.resize(n + 1);
+        bccIdx.resize(n + 1);
         for (int i = 1; i <= n; i++) {
             if (!num[i]) {
                 dfs(i, 0, i);
                 components.push_back(stack);
                 while (stack.size()) {
-                    ccIdx[stack.back()] = components.size();
+                    bccIdx[stack.back()] = components.size();
                     stack.pop_back();
                 }
             }
@@ -51,7 +51,7 @@ struct BridgeArcPoint {
                     components.push_back(curCC);
 
                     for (auto j: curCC) {
-                        ccIdx[j] = components.size();
+                        bccIdx[j] = components.size();
                     }
                 }
 

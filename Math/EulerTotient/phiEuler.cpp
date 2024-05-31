@@ -8,7 +8,7 @@ using namespace std;
 
 // sum phi(d) = n  with d|n
 
-// ĐPT: O(sqrt(n))
+// Time: O(sqrt(n))
 int phiEuler(int n) { // = n * (1 - 1/p1) ... (1 - 1/pn)
 	if (n == 1) return 1;
 
@@ -26,7 +26,7 @@ int phiEuler(int n) { // = n * (1 - 1/p1) ... (1 - 1/pn)
 	return res;
 }
 
-// ĐPT: O(log(n)) with n <= 1e7
+// Time: O(log(n)) with n <= 1e7
 sieve(10000000);
 
 for (int i = 1; i <= 10000000; i++) {

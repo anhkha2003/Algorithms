@@ -1,12 +1,12 @@
 // a * x + b * y = gcd
 // return gcd
 
-// Nghiệm: x, y
+// Solution: x, y
 // (x, y) && (x + p, y - q): p/q = b/a (pstg)
-// Họ nghiệm: (x + kp, y - kq)
+// All solution: (x + kp, y - kq)
 
 // ax + by = c (c % gcd = 0):
-// nghiệm: x * (c / gcd), y * (c / gcd)
+// Solution: x * (c / gcd), y * (c / gcd)
 long long ext_euclid(long long a, long long b, long long &x, long long &y) {
     long long xx = y = 0;
     long long yy = x = 1;

@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Nghiệm: x, y
+// Solution: x, y
 // (x, y) && (x + p, y - q): p/q = b/a (pstg)
-// Họ nghiệm: (x + kp, y - kq)
+// All Solution: (x + kp, y - kq)
 
 struct Diophantine {
     long long mulmod(long long a, long long b, long long c) {

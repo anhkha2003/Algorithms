@@ -1,5 +1,7 @@
 // Constructor: FlowBound flowBound(n)
 // Usage: addEdge(u, v, low, up): add edge u->v where low <= cap <= up 
+// Note: only call minFlow/maxFlow/canFlow once, since dinic has been changed
+
 struct Edge {
     int u, v;
     long long cap, flow;

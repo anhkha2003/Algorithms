@@ -15,21 +15,23 @@ long long pw(long long a, long long n) {
 
 long long det(vector<vector<long long>>& a) {
     int n = a.size(); long long res = 1;
+    bool isNeg = 0;
     for (int i = 0; i < n; i++) {
         int b = i;
         for (int j = i + 1; j < n; j++) {
-            if (fabs(a[j][i]) > fabs(a[b][i])) b = j;
+            if (abs(a[j][i]) > abs(a[b][i])) b = j;
         }
 
         if (i != b) {
             swap(a[i], a[b]);
-            res = (-res % MOD + MOD) % MOD;
+            isNeg ^= 1;
         }
 
         res = res * a[i][i] % MOD;
         if (res == 0) return 0;
+        long long denom = pw(a[i][i], MOD - 2);
         for (int j = i + 1; j < n; j++) {
-            long long v = a[j][i] * pw(a[i][i], MOD - 2) % MOD;
+            long long v = a[j][i] * denom % MOD;
             if (v != 0) {
                 for (int k = i + 1; k < n; k++) {
                     a[j][k] -= v * a[i][k] % MOD;
@@ -38,6 +40,7 @@ long long det(vector<vector<long long>>& a) {
             }
         }
     }
+    if (isNeg) res = (-res % MOD + MOD) % MOD;
     return res;
 }
 

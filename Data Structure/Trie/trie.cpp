@@ -16,49 +16,49 @@ struct Trie {
     }
 
     void insert(int val) {
-        int root = 1;
+        int cur = 1;
         for (int i = 29; i >= 0; i--) {
             int bit = (bool) (val & (1 << i));
 
-            node[root].size++;
-            if (node[root].child[bit] == 0) {
-                node[root].child[bit] = ++ID;
+            node[cur].size++;
+            if (node[cur].child[bit] == 0) {
+                node[cur].child[bit] = ++ID;
             }
-            root = node[root].child[bit];
+            cur = node[cur].child[bit];
         }
-        node[root].size++;
+        node[cur].size++;
     }
 
     long long queryMin(int val) {
-        int root = 1;
+        int cur = 1;
         long long res = 0;
         for (int i = 29; i >= 0; i--) {
             int bit = (bool) (val & (1 << i));
 
-            if (node[root].child[bit] == 0) {
+            if (node[cur].child[bit] == 0) {
                 res += (1 << i);
-                root = node[root].child[bit ^ 1];
+                cur = node[cur].child[bit ^ 1];
             }
             else { 
-                root = node[root].child[bit];
+                cur = node[cur].child[bit];
             }
         }
         return res;
     }
 
     long long queryMax(int val) { // max a[i] ^ val
-        int root = 1;
+        int cur = 1;
         long long res = 0;
         for (int i = 29; i >= 0; i--) {
             int bit = (bool) (val & (1 << i));
             bit ^= 1;
 
-            if (node[root].child[bit] == 0) {
-                root = node[root].child[bit ^ 1];
+            if (node[cur].child[bit] == 0) {
+                cur = node[cur].child[bit ^ 1];
             }
             else {
                 res += (1 << i);
-                root = node[root].child[bit];
+                cur = node[cur].child[bit];
             }
         }
         return res;

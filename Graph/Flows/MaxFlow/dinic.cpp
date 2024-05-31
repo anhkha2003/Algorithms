@@ -1,6 +1,6 @@
 // Use:
 // Constructor: Dinic dinic(n)
-// 
+// 0-index (dinic(n + 1) if 1-index)
 // add edges: dinic.addEdge(u, v, c)   (u -> v)
 // 
 // trace: for (auto e: dinic.E) {
@@ -9,7 +9,15 @@
 //  }
 // }
 // 
-// minCut: i from (0 to dinic.N - 1): dinic.d[i] != dinic.N + 1
+// minCut: i from (0 to dinic.N - 1): dinic.d[i] != dinic.N + 1 (list of keep vertices)
+// for [u, v] in edges: keep[u] != keep[v] -> u-v is cut
+
+// in bipartite graph: minimum vertex cover = min cut = max matching
+//                     maximum independent set = n + m - max matching
+// source -> left: cap = 1
+// left -> right: cap = INF
+// right -> sink: cap = 1
+// trace: from minCut, source -> left or right -> sink
 struct Edge {
     int u, v;
     long long cap, flow;
@@ -75,8 +83,3 @@ struct Dinic {
         return total;
     }
 };
-
-// s -> i -> j -> t
-// dinic.addEdge(i, j, c)
-// dinic.addEdge(s, i, 1)
-// dinic.addEdge(i, t, 1)

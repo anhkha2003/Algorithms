@@ -38,7 +38,7 @@ struct LCA {
 
     int getKthAnc(int n, int k) { // jump k nodes from n
         int node = n;
-        for (int i = 30; i >= 0; i--) {
+        for (int i = logn; i >= 0; i--) {
             if (p[node][i] != -1 && (1 << i) <= k) {
                 node = p[node][i];
                 k -= (1 << i);
