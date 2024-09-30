@@ -14,44 +14,43 @@ typedef pair<int, int> II;
 const int INF = 1e9;
 int cnt = 0;
 
-struct Spfa { // Shortest Path Faster Algorithm
+struct SPFA { // Shortest Path Faster Algorithm
     int n;
-    vector<vector<II>> adj;
+    vector<vector<pair<int, int>>> adj;
     vector<int> d;
 
-    Spfa(int n): n(n) {
+    SPFA(int n): n(n) {
         adj.resize(n + 1);
         d.resize(n + 1);
     }
 
     void addEdge(int u, int v, int c) {
         adj[u].push_back({v, c});
+        adj[v].push_back({u, c});
     } 
 
     bool spfa(int s) {
         d.assign(n + 1, INF);
+        vector<int> cnt(n + 1, 0);
         vector<bool> inqueue(n + 1, false);
-        priority_queue<II, vector<II>, greater<II>> pq;
+        queue<int> q;
 
         d[s] = 0;
-        pq.push({0, s});
+        q.push(s);
         inqueue[s] = true;
-        while (!pq.empty()) {
-            auto v = pq.top();
-            pq.pop();
-            inqueue[v.second] = false;
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+            inqueue[u] = false;
 
-            for (auto edge : adj[v.second]) {
-                int to = edge.first;
-                int len = edge.second;
-
-                if (d[v.second] + len < d[to]) {
-                    d[to] = d[v.second] + len;
-                    if (!inqueue[to]) {
-                        pq.push({d[to], to});
-                        inqueue[to] = true;
-                        cnt++;
-                        if (cnt > (int)1e6) {
+            for (auto [v, w]: adj[u]) {
+                if (d[u] + w < d[v]) {
+                    d[v] = d[u] + w;
+                    if (!inqueue[v]) {
+                        q.push(v);
+                        inqueue[v] = true;
+                        cnt[v]++;
+                        if (cnt[v] > n) {
                             return false;  // negative cycle
                         }
                     }
@@ -61,6 +60,7 @@ struct Spfa { // Shortest Path Faster Algorithm
         return true;
     }
 };
+
 
 int main() {
     // freopen("input.txt", "r", stdin);

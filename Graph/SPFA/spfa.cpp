@@ -25,21 +25,18 @@ struct SPFA { // Shortest Path Faster Algorithm
         q.push(s);
         inqueue[s] = true;
         while (!q.empty()) {
-            int v = q.front();
+            int u = q.front();
             q.pop();
-            inqueue[v] = false;
+            inqueue[u] = false;
 
-            for (auto edge : adj[v]) {
-                int to = edge.first;
-                int len = edge.second;
-
-                if (d[v] + len < d[to]) {
-                    d[to] = d[v] + len;
-                    if (!inqueue[to]) {
-                        q.push(to);
-                        inqueue[to] = true;
-                        cnt[to]++;
-                        if (cnt[to] > n) {
+            for (auto [v, w]: adj[u]) {
+                if (d[u] + w < d[v]) {
+                    d[v] = d[u] + w;
+                    if (!inqueue[v]) {
+                        q.push(v);
+                        inqueue[v] = true;
+                        cnt[v]++;
+                        if (cnt[v] > n) {
                             return false;  // negative cycle
                         }
                     }
