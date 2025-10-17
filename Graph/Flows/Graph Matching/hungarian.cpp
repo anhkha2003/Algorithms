@@ -4,7 +4,8 @@
 // Constructor: Hungarian<long long> hung(n, m)
 // 
 // 0-th index
-// 
+//
+// set default a = INF if find mincost 
 // add (u, v, c) and print solve() if find mincost
 // add (u, v -c) and print -solve() if find maxcost
 //

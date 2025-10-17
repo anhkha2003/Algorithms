@@ -30,12 +30,23 @@ struct Point {
 struct CHT {
     vector<Point> pts;
 
-    double cross (Point a, Point b) {return (double)(b.y - a.y) / (b.x - a.x);}
+    bool cmp(Point a, Point b, Point c) {
+        // true if cross(a, b) > cross(b, c)
+        long long y1 = b.y - a.y;
+        long long x1 = b.x - a.x;
+
+        long long y2 = c.y - b.y;
+        long long x2 = c.x - b.x;
+
+        long long left = y1 * x2;
+        long long right = y2 * x1;
+        return (left > right);
+    }
 
     void addLine(long long x, long long y) {
         if (pts.size() && pts.back().x == x && pts.back().y == y) return;
 
-        while(pts.size() >= 2 && cross(pts[pts.size()-2], pts.back()) > cross(pts.back(), (Point){x, y})){
+        while(pts.size() >= 2 && cmp(pts[pts.size() - 2], pts.back(), (Point){x, y})){
             pts.pop_back();   
         }
         pts.push_back({x, y});

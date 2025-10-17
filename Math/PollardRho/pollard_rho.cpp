@@ -15,12 +15,14 @@ long long mul(long long a, long long b, long long m){
     // return a * b % m if m <= 1e9
     // return (__int128) a * b % m if can use __int128
 
-    long long c = (long double)a * b / m;
-    long long ans = (long long)(a * b - c * m) % m;
-    if (ans < 0) {
-        ans += m;
-    }   
-    return ans;
+    // long long c = (long double)a * b / m;
+    // long long ans = (long long)(a * b - c * m) % m;
+    // if (ans < 0) {
+    //     ans += m;
+    // }   
+    // return ans;
+    
+    return (__int128) a * b % m;
 }
 
 long long pw(long long a, long long n, long long m){

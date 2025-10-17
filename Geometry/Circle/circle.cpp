@@ -1,3 +1,34 @@
+const double EPS = 1e-8;
+const double PI = acos(-1);
+
+inline int cmp(double a, double b) {
+    return (a < b - EPS) ? -1 : ((a > b + EPS) ? 1 : 0);
+}
+
+struct Point {
+    long double x, y;
+    Point (long double x = 0, long double y = 0): x(x), y(y){}
+    Point operator+(const Point& a) const{
+        return {x + a.x, y + a.y};
+    }
+    Point operator-(const Point& a) const{
+        return {x - a.x, y - a.y};
+    }
+    long double operator*(const Point& a) const{
+        return x * a.x + y * a.y;
+    }
+    Point operator*(long double c) const {
+        return {x * c, y * c};
+    }
+    Point operator / (double k) const { return Point(x/k, y/k); }
+    double len() { return hypot(x, y); }
+
+    Point rotate(double alpha) {
+        double cosa = cos(alpha), sina = sin(alpha);
+        return Point(x * cosa - y * sina, x * sina + y * cosa);
+    }
+};
+
 struct Circle : Point {
     double r;
     Circle(double _x = 0, double _y = 0, double _r = 0) : Point(_x, _y), r(_r) {}

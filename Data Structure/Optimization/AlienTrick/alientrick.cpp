@@ -7,6 +7,7 @@
 // f[i] = f[j] + cost(j + 1, i) + C
 // binary search C to find min/max dp[n][k] (binary search based on extreme)
 // before binary search, print all solve1D(n, k, c) with all Cs to see whether function has max/min extreme
+// C is double general, but if cost is integer, extreme C also integer
 
 long long cost(int i, int j, long long c) { // i -> j
     return (sum[j] - sum[i]) * (j - i - 1) + c;
@@ -24,7 +25,7 @@ long long solve1D(int n, int k, long long c) {
 
 long long solve(int n, int k) {
     // dp[i][k] = min(dp[j][k - 1] + cost(j + 1, i))
-    long long lower = -1e15, upper = 1e15; // careful overflow
+    long long lower = -1e12, upper = 1e12; // careful overflow
     while (lower < upper) {
         long long mid = lower + (upper - lower) / 2;
         if (solve1D(n, k, mid) <= solve1D(n, k, mid + 1)) {
@@ -35,3 +36,21 @@ long long solve(int n, int k) {
 
     return solve1D(n, k, lower);
 }
+
+// in case cost is a double function:
+// C in cost also double and need to binary search for double
+/*
+long double solve(int n, int k) {
+    // dp[i][k] = min(dp[j][k - 1] + cost(j + 1, i))
+    long double lower = -1e12, upper = 1e12; 
+    for (int z = 1; z <= 150; z++) {
+        long double mid = (lower + upper) / 2;
+        long double eps = (upper - lower) / 100;
+        if (solve1D(n, k, mid - eps) <= solve1D(n, k, mid + eps)) {
+            lower = mid - eps;
+        }
+        else upper = mid + eps;
+    }
+    return solve1D(n, k, (lower + upper) / 2);
+}
+*/
